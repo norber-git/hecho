@@ -108,6 +108,10 @@ h2 {
 	text-decoration: none;
 }
 
+.liCat {
+	cursor: pointer;
+}
+
 main {
 	display: flex;
 }
