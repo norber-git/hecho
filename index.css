@@ -89,13 +89,13 @@ h2 {
 }
 
 #menu li:first-child {
-	margin-right: 10px;
+	margin-right: 10px;	
 }
 
 #menu li {
 	flex-grow: 1;
-	text-align: center;	
-	background-color: #bad3f1;	
+	text-align: center;
+	background-color: #bad3f1;
 	border: 1px solid transparent;
 	padding: 12px;
 }
@@ -108,20 +108,44 @@ h2 {
 	text-decoration: none;
 }
 
+#categoriaSeleccionada {
+	text-align: center;
+}
+
 .liCat {
 	cursor: pointer;
+	padding: 6px;
+	background-color: #baf1e4;	
+	border: 1px solid transparent;
+}
+
+.liCat:hover {
+	border: 1px solid green;
+}
+
+#categoriaSeleccionadaDatos li {
+	list-style: none;
+	padding: 6px 12px;
+	background-color: #dae8e0;
+	border: 1px solid transparent;
+}
+
+#categoriaSeleccionadaDatos li:hover {
+	border: 1px solid green;
 }
 
 main {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 main section:first-child {
 	flex-grow: 1;
+	/*background-color: #baf1e4;*/
 }
 
 main section {
-	flex-grow: 6;
+	flex-grow: 6;	
 }
 
 footer {
