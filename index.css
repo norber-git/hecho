@@ -63,6 +63,7 @@ a {
 body {
 	/* background-color: black;
 	color: white;*/
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -123,15 +124,83 @@ h2 {
 	border: 1px solid green;
 }
 
-#categoriaSeleccionadaDatos li {
-	list-style: none;
-	padding: 6px 12px;
-	background-color: #dae8e0;
-	border: 1px solid transparent;
+#categoriaSeleccionadaTabla {
+	font-size: 16px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
 }
 
-#categoriaSeleccionadaDatos li:hover {
-	border: 1px solid green;
+#categoriaSeleccionadaTabla td {
+	border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+
+#categoriaSeleccionadaTabla tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#botonera {
+	margin-top: 18px;
+	margin-bottom: 18px;
+	display: flex;
+	justify-content: space-around;
+}
+
+button {
+  flex-grow: 1;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #008CBA;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {
+  background-color: #3e8e41;  
+}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#botonera input {
+	/*padding: 15px 25px;*/
+	font-size: 16px;
+	text-align: center;
+	/*flex-grow: 0.5;*/
+	width: 64px;
+}
+
+#inputs {
+	flex-grow: 4;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+#inputs div {
+	/*display: flex;*/
+}
+
+#inputs div label {
+	display: block;
+	text-align: center;
+	font-weight: bold;
+}
+
+#inputs div input {
+	display: block;
 }
 
 main {
