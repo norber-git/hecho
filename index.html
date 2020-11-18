@@ -21,17 +21,38 @@
 		<section>
 			<h2 id="categoriaSeleccionada">&nbsp;</h2>
 			<article>
-				<ul id="categoriaSeleccionadaDatos"></ul>
+				<table id="categoriaSeleccionadaTabla"></table>
 				...datos existentes...<br>
 				...por mes...por día...<br>
 				...editar...borrar...<br>
 				...gráficos...<br>
 			</article>
-			<ul>
-				<li><button>Añadir hora actual</button></li>
-				<li><input type="text" placeholder="...dd-MM-yy hh:mm:ss..."/></li>
-				<li><button>Añadir hora personalizada</button></li>
-			</ul>
+			<div id="botonera">
+				<button id="addHoraActual">Añadir hora actual</button>
+				<div id="inputs">
+					<div>
+						<label for="dia">Día</label>
+						<input id="dia" type="number" min="1" max="31"/>
+					</div>
+					<div>
+						<label for="mes">Mes</label>
+						<input id="mes" type="number" min="1" max="12"/>
+					</div>
+					<div>
+						<label for="anyo">Año</label>
+						<input id="anyo" type="number" min="2020" max="2050"/>
+					</div>
+					<div>
+						<label for="hora">Hora</label>
+						<input id="hora" type="number" min="0" max="23"/>
+					</div>
+					<div>
+						<label for="minuto">Minuto</label>
+						<input id="minuto" type="number" min="0" max="59"/>
+					</div>
+				</div>
+				<button>Añadir hora personalizada</button>
+			</div>
 		</section>
 	</main>
 	<footer>
