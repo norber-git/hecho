@@ -9,10 +9,17 @@
 				if(ev.target.matches('.liCat')) { 
 					document.getElementById("categoriaSeleccionada").innerText = ev.target.innerHTML;
 					document.getElementById("categoriaSeleccionadaTabla").innerHTML = controller.loadCategoryValues(ev.target.id);
-				} else if(ev.target.matches('#addHoraActual')) {
-					// if hay categoría seleccionada, sino, mostrar aviso
+				} else if(ev.target.matches('#addHoraActual')) {// if hay categoría seleccionada, sino, mostrar aviso
 					const now = new Date(Date.now());
-					const obj = `{"day" : "${now.getFullYear()}-${controller.padString('00', now.getMonth() + 1, 'left')}-${controller.padString('00', now.getDate(), 'left')}", "hour" : "${controller.padString('00', now.getHours(), 'left')}:${controller.padString('00', now.getMinutes(), 'left')}"}`;					
+					const obj = `{"day" : "${now.getFullYear()}-${controller.padString('00', now.getMonth() + 1, 'left')}-${controller.padString('00', now.getDate(), 'left')}", "hour" : "${controller.padString('00', now.getHours(), 'left')}:${controller.padString('00', now.getMinutes(), 'left')}"}`;
+					document.getElementById("categoriaSeleccionadaTabla").innerHTML = controller.reloadCategoryValues("ajustar", obj);
+				} else if(ev.target.matches('#addHoraPersonalizada')) {// if hay categoría seleccionada, sino, mostrar aviso
+					const dia = controller.padString('00', document.getElementById("dia").value, 'left');
+					const mes = controller.padString('00', document.getElementById("mes").value, 'left');
+					const anyo = document.getElementById("anyo").value;
+					const hora = controller.padString('00', document.getElementById("hora").value, 'left');
+					const minuto = controller.padString('00', document.getElementById("minuto").value, 'left');
+					const obj = `{"day" : "${anyo}-${mes}-${dia}", "hour" : "${hora}:${minuto}"}`;
 					document.getElementById("categoriaSeleccionadaTabla").innerHTML = controller.reloadCategoryValues("ajustar", obj);
 				}
 		  });
@@ -21,7 +28,7 @@
 			document.getElementById("categorias").innerHTML = controller.loadCategories();
 		},
 	};
-	
+	// página de editar categorías fusionarla con el index
 	const controller = {
 		loadCategories: () => {
 			let jsonData = JSON.parse(model.loadCategories());
@@ -32,51 +39,22 @@
 			});
 			return liElements;
 		},
-		loadCategoryValues: (id, data) => {
+		loadCategoryValues: (id, data) => {// hacer el orderBy
 			let jsonData;
 			if(data === undefined || data === null) {
 				jsonData = JSON.parse(model.loadCategoryValues(id));
 			} else {
 				jsonData = data;
 			}
-			/*let liElements = '';
-			let timeStamp = '';
-			let formattedDate = '';
-			let savedDay = '';
-			let currentDay = '';
-			let firstTime = true;*/
-			/*jsonData.forEach((e, i, a) => {// Ordenar el array en la query
-				timeStamp = new Date(e.timestamp);
-				currentDay = controller.padString('00', timeStamp.getDate(), 'left') + '-' + controller.padString('00', timeStamp.getMonth() + 1, 'left') + '-' + timeStamp.getFullYear();
-				formattedDate = controller.padString('00', timeStamp.getDate(), 'left') + '-' + controller.padString('00', timeStamp.getMonth() + 1, 'left') + '-' + timeStamp.getFullYear() + ' ' + controller.padString('00', timeStamp.getHours(), 'left') + ':' + controller.padString('00', timeStamp.getMinutes(), 'left');
-				if(savedDay === currentDay) {
-					liElements += formattedDate + " *** ";
-				} else {
-					savedDay = currentDay;
-					if(firstTime !== true) { 
-						liElements += '</li>';						
-					} else {
-						firstTime = false;
-					}
-					liElements += '<li>' + formattedDate + " *** ";					
-				}				
-			});*/
 			let tableElements = '';
-			let timeStamp = '';
 			let savedDay = '';
-			let currentDay = '';
-			let firstTime = true;
 			jsonData.forEach((e, i, a) => {// Ordenar el array en la query
-				timeStamp = new Date(e.day + ' ' + e.hour);
-				currentDay = e.day;
-				if(savedDay === currentDay) {
+				if(savedDay === e.day) {
 					tableElements += '<td>' + e.hour + '</td>';
 				} else {
-					savedDay = currentDay;
-					if(firstTime !== true) { 
+					savedDay = e.day;
+					if(tableElements !== '') {
 						tableElements += '</tr>';						
-					} else {
-						firstTime = false;
 					}
 					tableElements += '<tr><td>' + e.day + '</td><td>' + e.hour + '</td>';					
 				}		
